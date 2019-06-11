@@ -1,10 +1,6 @@
-<h1>Cocktails</h1>
-
-<p>
-  <strong>Name:</strong>
-  <%= @cocktail.name %>
-  <br>
-  <strong>Recipe:</strong>
+<div class="container">
+  <h1 class="text-center my-3"><%= @cocktail.name.capitalize %></h1>
+  <h4 class="mb-3">Ingredients:</h4>
   <ul>
   <% @cocktail.doses.each do |dose| %>
     <li>
@@ -16,24 +12,19 @@
     </li>
   <% end %>
   </ul>
-  <br>
-</p>
-
-<h4>Recipe:</h4>
 
 <%= simple_form_for [@cocktail, @dose] do |f| %>
 
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
+  <div class="form-inputs mb-3">
     <%= f.input :description %>
     <%= f.association :ingredient, as: :select %>
-  </div>
-
-  <div class="form-actions">
     <%= f.button :submit, class: "btn btn-primary"%>
   </div>
 <% end %>
 
-<%= link_to "Home", cocktails_path %>
+<%= link_to "Home", cocktails_path, class: "btn btn-primary" %>
+
+</div>
